@@ -1,0 +1,120 @@
+<template>
+    <div class="page-view" :style="!$route.meta.hiddenHeaderContent ? 'margin: -24px -24px 0px;' : null">
+        <!-- pageHeader , route meta :true on hide -->
+        <page-header v-if="!$route.meta.hiddenHeaderContent" :title="pageTitle" :logo="logo" :avatar="avatar">
+            <slot slot="action" name="action"></slot>
+            <slot slot="content" name="headerContent"></slot>
+            <div slot="content" v-if="!this.$slots.headerContent && description">
+                <p style="font-size: 14px;color: rgba(0,0,0,.65)">{{ description }}</p>
+                <div class="link">
+                    <template v-for="(link, index) in linkList">
+                        <a :key="index" :href="link.href">
+                            <a-icon :type="link.icon"/>
+                            <span>{{ link.title }}</span>
+                        </a>
+                    </template>
+                </div>
+            </div>
+            <slot slot="extra" name="extra">
+                <div class="extra-img">
+                    <img v-if="typeof extraImage !== 'undefined'" :src="extraImage"/>
+                </div>
+            </slot>
+            <div slot="pageMenu">
+                <div class="page-menu-search" v-if="search">
+                    <!--                    <a-input-search-->
+                    <!--                        style="width: 80%; max-width: 522px;"-->
+                    <!--                        placeholder="请输入..."-->
+                    <!--                        size="large"-->
+                    <!--                        enterButton="搜索"-->
+                    <!--                    />-->
+                </div>
+                <div class="page-menu-tabs" v-if="tabs && tabs.items">
+                    <!-- @change="callback" :activeKey="activeKey" -->
+                    <a-tabs :tabBarStyle="{margin: 0}" :activeKey="tabs.active()" @change="tabs.callback">
+                        <a-tab-pane v-for="item in tabs.items" :tab="item.title" :key="item.key"></a-tab-pane>
+                    </a-tabs>
+                </div>
+            </div>
+        </page-header>
+        <div class="content">
+            <div class="page-header-index-wide">
+                <slot>
+                    <!-- keep-alive  -->
+                    <nuxt ref="content"/>
+                </slot>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+    import {mapState} from 'vuex'
+    import PageHeader from './PageHeader'
+
+    export default {
+        name: 'page-view',
+        components: {
+            PageHeader
+        },
+        props: {
+            avatar: {
+                type: String,
+                default: null
+            },
+            title: {
+                type: [String, Boolean],
+                default: true
+            },
+            logo: {
+                type: String,
+                default: null
+            },
+            directTabs: {
+                type: Object,
+                default: null
+            }
+        },
+        data() {
+            return {
+                pageTitle: null,
+                description: null,
+                linkList: [],
+                extraImage: '',
+                search: false,
+                tabs: {}
+            }
+        },
+        // computed: {
+        //     ...mapState({
+        //         multiTab: state => state.app.multiTab
+        //     })
+        // },
+        mounted() {
+            // this.tabs = this.directTabs;
+            this.getPageMeta()
+        },
+        updated() {
+            this.getPageMeta()
+        },
+        methods: {
+            getPageMeta() {
+                // eslint-disable-next-line
+                this.pageTitle = (typeof (this.title) === 'string' || !this.title) ? this.title : null;
+
+                const content = this.$refs.content;
+                if (content) {
+                    if (content.pageMeta) {
+                        Object.assign(this, content.pageMeta)
+                    } else {
+                        this.description = content.description;
+                        this.linkList = content.linkList;
+                        this.extraImage = content.extraImage;
+                        this.search = content.search === true;
+                        this.tabs = content.tabs;
+                    }
+                }
+            }
+        }
+    }
+</script>
