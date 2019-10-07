@@ -40,7 +40,7 @@
         layout: 'login',
         head() {
             return {
-                title: 'Login: HR Enterprise Resource Planning'
+                title: 'Login'
             }
         },
         data() {

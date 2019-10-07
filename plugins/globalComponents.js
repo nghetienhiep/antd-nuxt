@@ -1,8 +1,8 @@
 import Vue from 'vue';
 
-import Page403 from '../components/exception/403';
-import Page404 from '../components/exception/404';
-import Page500 from '../components/exception/500';
+import Page403 from '../components/Exception/403';
+import Page404 from '../components/Exception/404';
+import Page500 from '../components/Exception/500';
 import PageView from '../components/PageView';
 
 Vue.component(PageView.name, PageView);
