@@ -1,6 +1,6 @@
-# hr-erp
+# nuxt-antd
 
-> My breathtaking Nuxt.js project
+> Nuxt.js with Ant design!
 
 ## Build Setup
 
@@ -19,4 +19,4 @@ $ yarn start
 $ yarn generate
 ```
 
-For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
+For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).

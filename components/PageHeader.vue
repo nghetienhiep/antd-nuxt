@@ -1,63 +1,57 @@
 <template>
-    <div class="page-header">
-        <div class="page-header-index-wide">
-            <s-breadcrumb/>
-            <div class="detail">
-                <div class="main" v-if="!$route.meta.hiddenHeaderContent">
-                    <div class="row">
-                        <img v-if="logo" :src="logo" class="logo"/>
-                        <h1 v-if="title" class="title">{{ title }}</h1>
-                        <div class="action">
-                            <slot name="action"></slot>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div v-if="avatar" class="avatar">
-                            <a-avatar :src="avatar"/>
-                        </div>
-                        <div v-if="this.$slots.content" class="headerContent">
-                            <slot name="content"></slot>
-                        </div>
-                        <div v-if="this.$slots.extra" class="extra">
-                            <slot name="extra"></slot>
-                        </div>
-                    </div>
-                    <div>
-                        <slot name="pageMenu"></slot>
-                    </div>
+    <div :class="['page-header']">
+        <div class="page-header-breadcrumb">
+            <div class="main-container page-header-breadcrumb-content">
+                <div class="page-breadcrumbs">
+                    <page-breadcrumb />
+                    <h1 v-if="title" class="title" style="margin-bottom: 0;">
+                        {{ title }}
+                    </h1>
+                    <h1
+                        v-else-if="!title && lastBreadcrumbItem"
+                        class="title"
+                        style="margin-bottom: 0;"
+                    >
+                        {{ lastBreadcrumbItem.name }}
+                    </h1>
                 </div>
+                <div v-if="this.$slots.extra" class="page-header-extra">
+                    <slot name="extra"></slot>
+                </div>
+            </div>
+        </div>
+        <div v-if="$slots.banner" class="page-header-banner">
+            <div class="main-container page-header-banner-content">
+                <div style="background-color: #1caa65;"></div>
+                <slot name="banner"></slot>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-    import Breadcrumb from './tools/Breadcrumb'
+    import { mapState } from 'vuex';
+    import PageBreadcrumb from './tools/Breadcrumb';
 
     export default {
-        name: 'PageHeader',
         components: {
-            's-breadcrumb': Breadcrumb
+            PageBreadcrumb
         },
         props: {
             title: {
                 type: [String, Boolean],
-                default: true,
-                required: false
-            },
-            logo: {
-                type: String,
-                default: '',
-                required: false
-            },
-            avatar: {
-                type: String,
-                default: '',
+                default: false,
                 required: false
             }
         },
-        data() {
-            return {}
+        computed: {
+            ...mapState(['breadcrumbs']),
+            lastBreadcrumbItem() {
+                return this.breadcrumbs && this.breadcrumbs.length > 0
+                    ? // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+                      this.breadcrumbs[this.breadcrumbs.length - 1]
+                    : null;
+            }
         }
-    }
+    };
 </script>

@@ -1,6 +1,6 @@
-import CookieKey from '../config/cookie'
+// import CookieKey from '../config/cookie';
 
-export default function ({app, $axios, redirect, store}) {
+export default function({ app, $axios, redirect, store }) {
     // $axios.onRequest(config => {
     //     let accessToken = store.$cookies.get(CookieKey.ACCESS_TOKEN);
     //     if (accessToken) {

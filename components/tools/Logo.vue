@@ -1,26 +1,20 @@
 <template>
     <div class="logo">
-        <nuxt-link :to="$i18n.path('')">
-            <img src="../../assets/logo.svg"/>
-            <h1 v-if="showTitle">{{ title }}</h1>
+        <nuxt-link :to="$i18n.path('')" style="height: 100%;">
+            <div
+                :style="{ marginTop: isMobile ? '-2px' : '0' }"
+                class="custom-logo"
+            >
+                <img
+                    src="../../assets/images/logo-128.png"
+                    style="height: 100%;"
+                />
+            </div>
         </nuxt-link>
     </div>
 </template>
-
-<script>
-    export default {
-        name: 'Logo',
-        props: {
-            title: {
-                type: String,
-                default: 'ANTD NUXT',
-                required: false
-            },
-            showTitle: {
-                type: Boolean,
-                default: true,
-                required: false
-            }
-        }
+<style lang="scss">
+    .custom-logo {
+        text-align: center;
     }
-</script>
+</style>
