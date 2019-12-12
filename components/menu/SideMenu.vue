@@ -12,7 +12,12 @@
         width="256px"
     >
         <logo />
-        <app-menu :collapsed="collapsed" :theme="theme" :mode="mode" />
+        <app-menu
+            :collapsed="collapsed"
+            :theme="theme"
+            :mode="mode"
+            :show-icon="showIcon"
+        />
         <side-menu-bottom />
     </a-layout-sider>
 </template>
@@ -44,6 +49,10 @@
             collapsed: {
                 type: Boolean,
                 required: false,
+                default: false
+            },
+            showIcon: {
+                type: Boolean,
                 default: false
             }
         },

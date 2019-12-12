@@ -3,8 +3,8 @@
         <div class="user-wrapper">
             <div class="content-box">
                 <notice-icon v-if="!isMobile && cUser" class="action" />
-                <user-block v-if="cUser" />
-                <user-actions v-else />
+                <user-actions v-else-if="!isMobile && !cUser" />
+                <user-block />
                 <languages />
             </div>
         </div>

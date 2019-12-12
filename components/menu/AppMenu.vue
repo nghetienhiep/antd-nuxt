@@ -7,7 +7,7 @@
         :collapsed="collapsed"
     >
         <a-menu-item key="/" @click="handleClick('')">
-            <a-icon type="dashboard" />
+            <a-icon v-if="showIcon" type="dashboard" />
             <span>{{ $t('dashboard') }}</span>
         </a-menu-item>
     </a-menu>
@@ -31,6 +31,10 @@
             collapsed: {
                 type: Boolean,
                 required: false,
+                default: false
+            },
+            showIcon: {
+                type: Boolean,
                 default: false
             }
         },

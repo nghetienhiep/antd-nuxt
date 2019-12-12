@@ -15,6 +15,7 @@
                     :menus="menus"
                     :collapsed="false"
                     :collapsible="true"
+                    show-icon
                     mode="inline"
                 ></side-menu>
             </a-drawer>
