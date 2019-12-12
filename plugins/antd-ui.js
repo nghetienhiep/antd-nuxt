@@ -11,7 +11,12 @@ import {
     Popover,
     List,
     Badge,
-    Drawer
+    Drawer,
+    Divider,
+    Input,
+    Form,
+    Row,
+    Col
 } from 'ant-design-vue';
 
 import AntdActions from './antd-actions';
@@ -40,3 +45,10 @@ Vue.component(List.Item.name, List.Item);
 Vue.component(List.Item.Meta.name, List.Item.Meta);
 Vue.component(Badge.name, Badge);
 Vue.component(Drawer.name, Drawer);
+Vue.component(Divider.name, Divider);
+Vue.component(Input.name, Input);
+Vue.component(Input.Password.name, Input.Password);
+Vue.component(Form.name, Form);
+Vue.component(Form.Item.name, Form.Item);
+Vue.component(Row.name, Row);
+Vue.component(Col.name, Col);

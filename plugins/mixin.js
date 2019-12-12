@@ -28,6 +28,9 @@ Vue.mixin({
             formatDateTimeString: (state) =>
                 state.locale === 'vi' ? 'DD/MM/YYYY HH:mm' : 'YYYY-MM-DD HH:mm'
         }),
+        ...mapState('auth', {
+            cUser: (state) => state.user
+        }),
         isMobile() {
             return this.device === DEVICE_TYPE.MOBILE;
         },

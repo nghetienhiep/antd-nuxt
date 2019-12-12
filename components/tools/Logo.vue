@@ -6,6 +6,7 @@
                 class="custom-logo"
             >
                 <img
+                    alt="u Code"
                     src="../../assets/images/logo-128.png"
                     style="height: 100%;"
                 />

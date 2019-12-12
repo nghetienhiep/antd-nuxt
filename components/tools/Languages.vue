@@ -83,6 +83,7 @@
                             : require('../../assets/images/en-on.png')
                     "
                     icon="picture"
+                    style="margin-top: -5px;"
                 />
             </span>
         </a-dropdown>
