@@ -19,7 +19,7 @@
         "cross-env": "^6.0.3",
         "express": "^4.16.4",
         "lodash": "^4.17.15",
-        "moment-timezone": "^0.5.27",
+        "moment-timezone": "^0.5.35",
         "node-sass": "^4.13.0",
         "nuxt": "^2.10.2",
         "sass-loader": "^8.0.0",
