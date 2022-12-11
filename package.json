@@ -17,7 +17,7 @@
         "ant-design-vue": "^1.4.10",
         "cookie-universal-nuxt": "^2.1.0",
         "cross-env": "^6.0.3",
-        "express": "^4.16.4",
+        "express": "^4.17.3",
         "lodash": "^4.17.15",
         "moment-timezone": "^0.5.27",
         "node-sass": "^4.13.0",
